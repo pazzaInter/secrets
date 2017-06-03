@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static/login/css/mystyles.css">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login/css/pure-min.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/grids-responsive-min.css' %}">
+  </head>
+  <body>
+    <h2>Registration</h2>
+    <form class="pure-form pure-form-aligned registration" action="/register" method="post">
+      {% csrf_token%}
+      <fieldset>
+            <div class="pure-control-group">
+                <label for="first_name">First Name</label>
+                <input id="first_name" name="first_name" type="text" placeholder="First Name">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'first_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pure-control-group">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" name="last_name" type="text" placeholder="Last Name">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'last_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pure-control-group">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="Email Address">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'email' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pure-control-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Password">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pure-control-group">
+                <label for="c_password">Confirm Password</label>
+                <input id="c_password" name="c_password" type="password" placeholder="Password">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'c_password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary">Register</button>
+            </div>
+      </fieldset>
+    </form>
+    <h2>Login</h2>
+    <form class="pure-form pure-form-aligned login" action="/login" method="post">
+      {% csrf_token%}
+      <fieldset>
+        <div class="pure-control-group">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="Email Address">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password">
+        </div>
+
+        {% for message in messages %}
+          {% if message.extra_tags == 'login-error' %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+          {% endif %}
+        {% endfor %}
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Sign In</button>
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
